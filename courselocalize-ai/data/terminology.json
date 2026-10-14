@@ -1,0 +1,52 @@
+[
+  {
+    "term": "Function",
+    "mode": "translate",
+    "translations": {}
+  },
+  {
+    "term": "Variable",
+    "mode": "translate",
+    "translations": {}
+  },
+  {
+    "term": "Database",
+    "mode": "translate",
+    "translations": {}
+  },
+  {
+    "term": "Algorithm",
+    "mode": "translate",
+    "translations": {}
+  },
+  {
+    "term": "Machine Learning",
+    "mode": "translate",
+    "translations": {}
+  },
+  {
+    "term": "Artificial Intelligence",
+    "mode": "translate",
+    "translations": {}
+  },
+  {
+    "term": "API",
+    "mode": "preserve",
+    "translations": {}
+  },
+  {
+    "term": "Python",
+    "mode": "preserve",
+    "translations": {}
+  },
+  {
+    "term": "SQL",
+    "mode": "preserve",
+    "translations": {}
+  },
+  {
+    "term": "HTML",
+    "mode": "preserve",
+    "translations": {}
+  }
+]

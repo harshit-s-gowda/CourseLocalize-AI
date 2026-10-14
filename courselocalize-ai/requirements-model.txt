@@ -1,0 +1,5 @@
+-r requirements.txt
+torch>=2.5
+transformers>=4.51,<5
+indictranstoolkit
+sentencepiece>=0.2

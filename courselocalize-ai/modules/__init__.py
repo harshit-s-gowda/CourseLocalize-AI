@@ -1,0 +1,1 @@
+"""CourseLocalize AI application modules."""

@@ -1,6 +1,6 @@
-# [Project name]
+# CourseLocalize AI
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+Streamlit prototype for translating English technical course content into Indian languages while preserving code and lesson structure.
 
 ## Run & Operate
 
@@ -10,6 +10,7 @@ _Replace the heading above with the project's name, and this line with one sente
 - `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
 - `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
 - Required env: `DATABASE_URL` — Postgres connection string
+- `cd courselocalize-ai && python3.11 -m streamlit run app.py --server.address 0.0.0.0 --server.port 5000` — run CourseLocalize AI
 
 ## Stack
 
@@ -22,15 +23,22 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `courselocalize-ai/app.py` — Streamlit pages and user flows
+- `courselocalize-ai/modules/` — text extraction, translation, preservation, quality checks, and history
+- `courselocalize-ai/data/terminology.json` — editable terminology rules
+- `courselocalize-ai/data/history.json` — local job history; ignored by Git because it contains course text
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- Keep this product in its requested Python/Streamlit stack; run it as a dedicated workflow rather than replacing it with a different frontend.
+- Use official IndicTrans2 local inference as the primary translation path, with an explicit compatible endpoint option. Never fall back to fabricated translations.
+- Keep successful history local in JSON for the prototype; do not store source content for failed jobs.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+- Localize English technical lessons into Kannada, Hindi, Tamil, and Telugu.
+- Preserve code, identifiers, configured terms, and Markdown course structure.
+- Review and download translations, manage terminology, revisit history, and optionally calculate reference-based BLEU and chrF++ scores.
 
 ## User preferences
 

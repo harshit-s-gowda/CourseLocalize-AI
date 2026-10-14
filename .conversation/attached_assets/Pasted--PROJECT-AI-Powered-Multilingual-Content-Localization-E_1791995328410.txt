@@ -1,0 +1,268 @@
+# PROJECT: AI-Powered Multilingual Content Localization Engine for Skill Courses
+
+Act as a senior full-stack developer, AI/ML engineer, UI/UX designer, and software tester. Build a complete, user-friendly, working prototype for my college Design Project-I.
+
+## 1. Project Objective
+
+Build a web application that translates English technical course content into Indian languages while preserving technical terminology, programming code, headings, lists, and educational structure.
+
+Target languages:
+- Kannada
+- Hindi
+- Tamil
+- Telugu
+
+The application must be functional, easy for students to use, and suitable for a live college project demonstration.
+
+## 2. Technology Stack
+
+Use the following stack:
+
+- Frontend: Streamlit
+- Programming language: Python
+- Translation model: AI4Bharat IndicTrans2
+- Model integration: Hugging Face and the official IndicTrans2 inference instructions
+- Text processing: Python and regular expressions
+- PDF processing: PyMuPDF or an equivalent Python PDF extraction library
+- Storage: JSON or local files for the initial prototype
+- Version control: Git and GitHub
+- Evaluation: BLEU and chrF++ where appropriate
+
+Keep the application simple enough to run on a student laptop. Do not require MongoDB, paid APIs, or model training for the initial version.
+
+## 3. User Interface Design
+
+Create a modern, clean, student-project-quality interface.
+
+Application name:
+**CourseLocalize AI**
+
+Subtitle:
+"Learn technical skills in your preferred language."
+
+Use:
+- White or light background
+- Blue and purple accent colours
+- Clear buttons and readable fonts
+- Simple icons
+- Responsive layout
+- Sidebar navigation
+- Progress indicators and helpful error messages
+
+Create these pages or sections:
+
+### A. Home Dashboard
+- Project name and short introduction
+- Supported languages
+- Main button: Start Localization
+- Three feature cards:
+  1. Multilingual Translation
+  2. Technical Term Preservation
+  3. Course Structure Preservation
+- A simple workflow showing Upload → Translate → Review → Download
+
+### B. Localization Workspace
+- Upload a TXT, Markdown, or supported PDF file
+- Also allow users to paste course text directly
+- Select source language: English
+- Select target language: Kannada, Hindi, Tamil, or Telugu
+- Display the selected file name
+- Add a prominent "Localize Content" button
+- Show translation progress and meaningful status messages
+
+### C. Translation Results
+- Display the original English content and translated content side by side
+- Show the selected target language
+- Preserve paragraphs, headings, lists, and code blocks
+- Highlight technical terms where possible
+- Show a warning if parts of the original structure could not be preserved
+- Provide a download button for the translated output in TXT or Markdown format
+- Offer PDF export only when properly implemented
+
+### D. History
+- Save recent localization jobs locally in JSON
+- Display the source file name, target language, date, and status
+- Allow users to reopen or download previous results
+- Provide a clear history option
+
+### E. About Project
+- Display the problem statement
+- Show the five project modules:
+  1. Content Processing
+  2. Context and Terminology Handling
+  3. Multilingual Translation
+  4. Course Structure Preservation
+  5. Quality Evaluation
+- Show the technology stack and project objectives
+
+## 4. Core Localization Pipeline
+
+Implement the following workflow:
+
+Step 1: Accept course text from a file upload or text input.
+
+Step 2: Validate the input and reject empty or unsupported files.
+
+Step 3: Extract the text and identify headings, paragraphs, lists, tables where supported, and code blocks.
+
+Step 4: Identify technical terms using a configurable terminology dictionary.
+
+Step 5: Protect programming code and other content that must remain unchanged by replacing it with unique placeholders.
+
+Step 6: Translate the remaining text using IndicTrans2 into the selected target language.
+
+Step 7: Restore the original code and protected content exactly.
+
+Step 8: Reconstruct the original course structure as closely as possible.
+
+Step 9: Run checks for missing placeholders, code changes, empty output, and structural inconsistencies.
+
+Step 10: Display the translated content and allow the user to download it.
+
+Do not translate the protected placeholders themselves. If a placeholder is missing or corrupted, report the problem rather than silently producing an incorrect result.
+
+## 5. Translation Model Integration
+
+Use the official AI4Bharat IndicTrans2 model and its documented inference process.
+
+- Support English-to-Kannada, English-to-Hindi, English-to-Tamil, and English-to-Telugu.
+- Use the appropriate model and language codes from the official documentation.
+- Process long content in manageable chunks.
+- Preserve paragraph order when combining translated chunks.
+- Handle model-loading errors, missing dependencies, and unsupported inputs.
+- Provide installation instructions for the required model dependencies.
+- Do not train a new model from scratch.
+
+If the model cannot run in the current environment, explain the exact reason and provide a configurable, documented alternative inference endpoint. Do not silently substitute random, hardcoded, or fake translations.
+
+## 6. Technical Terminology Preservation
+
+Create an editable terminology dictionary containing examples such as:
+
+- Function
+- Variable
+- Database
+- Algorithm
+- Machine Learning
+- Artificial Intelligence
+- API
+- Python
+- SQL
+- HTML
+
+Allow the dictionary to be extended with preferred translations or preservation rules.
+
+Keep programming syntax, variable names, function names, file paths, and code blocks unchanged.
+
+Do not blindly protect every technical term. Use clear rules to decide which terms should remain unchanged and which should be translated.
+
+## 7. Quality Evaluation
+
+Implement practical validation checks:
+
+- Input and output are not empty.
+- All protected code blocks are restored.
+- All placeholders are accounted for.
+- Original headings and paragraph order are preserved where possible.
+- Translation errors are reported clearly.
+
+Provide an optional evaluation section for BLEU and chrF++ using reference translations and suitable evaluation data.
+
+Do not invent evaluation scores. Explain when reference translations are unavailable and distinguish automated metrics from human evaluation.
+
+## 8. File and Project Structure
+
+Organize the project into clear, maintainable modules. For example:
+
+courselocalize-ai/
+  app.py
+  requirements.txt
+  README.md
+  config.py
+  modules/
+    file_processor.py
+    terminology.py
+    translator.py
+    structure_preserver.py
+    quality_evaluator.py
+    history_manager.py
+  data/
+    terminology.json
+    history.json
+  tests/
+    test_file_processor.py
+    test_terminology.py
+    test_structure_preserver.py
+    test_quality_evaluator.py
+
+You may improve this structure if necessary, but keep the responsibilities separate.
+
+## 9. Error Handling and Security
+
+- Validate uploaded file types and file sizes.
+- Handle unreadable, empty, and corrupted files.
+- Never execute uploaded code.
+- Do not expose API keys or credentials.
+- Avoid storing uploaded content unnecessarily.
+- Provide clear messages when translation or evaluation fails.
+- Do not claim a translation succeeded if the model returned an error.
+
+## 10. Testing
+
+Create tests for:
+
+- Text extraction
+- Empty input
+- Unsupported file types
+- Code preservation
+- Placeholder restoration
+- Terminology handling
+- Translation failures
+- Output download
+- History storage
+
+Include a sample English lesson with a Python code block to demonstrate that explanatory text can be translated while the code remains unchanged.
+
+## 11. Documentation and Setup
+
+Create a complete README containing:
+
+- Project overview
+- Features
+- Technology stack
+- Folder structure
+- Python installation requirements
+- Virtual environment setup
+- Dependency installation
+- IndicTrans2 setup
+- How to run the application
+- How to test the application
+- Known limitations
+- Example usage
+- Future improvements
+
+The application should run using a command similar to:
+
+streamlit run app.py
+
+Provide the exact commands appropriate for the selected environment.
+
+## 12. Final Deliverables
+
+Generate the actual source code for all required files, not just an explanation or design.
+
+The final result must include:
+1. A working Streamlit application.
+2. A real translation integration.
+3. Code and terminology preservation.
+4. Course structure reconstruction.
+5. Translation result preview.
+6. Download functionality.
+7. Local history.
+8. Error handling and tests.
+9. requirements.txt.
+10. A complete README.
+
+First create the smallest working end-to-end version. Then add the remaining features incrementally. Run the tests, fix errors, and explain how I can launch and demonstrate the application on my laptop.
+
+Do not mark any feature as completed until its implementation has been checked. If any feature cannot be completed in the current environment, state the limitation and provide the next steps.
